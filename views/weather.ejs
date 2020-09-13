@@ -1,0 +1,11 @@
+<%- include('header')%>
+   <div id="weather">
+    <h1 id="weather-head">Current Weather</h1>
+   <p>Temperature is <%= weatherData.main.temp %>°C</p>
+   <p><%- weatherData.weather[0].description.charAt(0).toUpperCase() + weatherData.weather[0].description.slice(1) %></p>
+   </div>
+   <script>
+       var id="<%= id %>";
+    </script>
+    <script src ="weather.js"></script>
+<%- include('footer')%>

@@ -1,0 +1,40 @@
+<%- include('header')%>
+<div id="news">
+<% for(var i=0;i<data.length;i++){%>
+   <a name="article<%= i%>"></a>
+<div id="post" >
+<div data-toggle="collapse" data-target="#collapse<%= i%>" class="first-part-article" aria-expanded="false">
+    <h1 id="title"><%- data[i].webTitle %></h1>
+    <p><%- (data[i].webPublicationDate).slice(0,10) %></p>
+    <div class="row">
+        <div class="col-lg-6">
+          <p><img src=<%= data[i].fields.thumbnail %> id="thumbnail"></p>
+        </div>
+        <div class="col-lg-6">
+           <p id="trailText"><%- data[i].fields.trailText %></p>
+        </div>
+    </div>
+</div>
+<div class="collapse" id="collapse<%= i%>" >
+    <div class="card card-body">
+        <button type="button" class="btn btn-danger goToTop">Close this article</button>
+      <p><%-data[i].blocks.requestedBodyBlocks["body:latest:2"][0].bodyHtml  %></p>
+    </div>
+</div>
+</div>
+<% } %>
+</div>
+<script>
+   var ele=document.getElementsByClassName('goToTop');
+   for(var i=0;i<ele.length;i++){
+    ele[i].addEventListener('click',function(){
+        var x=this.parentElement.parentElement;
+        //slice from 8 because the id is collapsenum we want only num so we are slicing off collaspe.
+        location.href="#article"+x.id.slice(8);
+        x.classList='collapse';
+   })
+}
+</script>
+<script src ="weather.js"></script>
+<script>getLocation();</script>
+<%- include('footer')%>
